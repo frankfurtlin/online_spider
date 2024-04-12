@@ -1,0 +1,50 @@
+{% extends 'hot/base.html' %}
+
+{% block title %}今日热榜-科技{% endblock %}
+
+{% block menu_item_id %}home{% endblock %}
+
+{% block content %}
+    <div class="site-items" id="site-items">
+        <button class="site-item" onclick="loadSiteHots(this, 'ithome')">
+            <img src="../../static/img/hot-site/it.png" alt="IT之家">
+            <span>IT之家</span>
+        </button>
+        <button class="site-item" onclick="loadSiteHots(this, '36kr')">
+            <img src="../../static/img/hot-site/36kr.png" alt="36氪">
+            <span>36氪</span>
+        </button>
+        <button class="site-item" onclick="loadSiteHots(this, 'sspai')">
+            <img src="../../static/img/hot-site/sspai.png" alt="少数派">
+            <span>少数派</span>
+        </button>
+        <button class="site-item" onclick="loadSiteHots(this, 'geekpark')">
+            <img src="../../static/img/hot-site/geekpark.png" alt="极客公园">
+            <span>极客公园</span>
+        </button>
+        <button class="site-item" onclick="loadSiteHots(this, 'pinwest')">
+            <img src="../../static/img/hot-site/pinwest.png" alt="品玩">
+            <span>品玩</span>
+        </button>
+        <button class="site-item" onclick="loadSiteHots(this, 'ifanr')">
+            <img src="../../static/img/hot-site/ifanr.png" alt="爱范儿">
+            <span>爱范儿</span>
+        </button>
+        <button class="site-item" onclick="loadSiteHots(this, 'cyzone')">
+            <img src="../../static/img/hot-site/cyzone.png" alt="创业邦">
+            <span>创业邦</span>
+        </button>
+
+        <button class="site-item" id="toggle-btn">
+            <span>展开</span>
+            <svg id="arrow-svg" fill="none" stroke="currentColor" stroke-width="4" viewBox="0 0 48 48" aria-hidden="true"
+                 focusable="false">
+                <path d="M39.6 17.443 24.043 33 8.487 17.443"></path>
+            </svg>
+        </button>
+    </div>
+
+    <div class="article-box" id="article-box">
+        {% include 'hot/hot-content.html' with context %}
+    </div>
+{% endblock %}

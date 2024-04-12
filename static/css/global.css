@@ -1,0 +1,189 @@
+body {
+    font: 14px/1.5 Helvetica Neue, Helvetica, Arial, PingFang SC, Hiragino Sans GB, Heiti SC, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif
+}
+
+img[src=""] {
+    display: none;
+}
+
+.site {
+    width: 60%;
+    height: 100%;
+    max-width: 100%; /* 确保不超过屏幕宽度 */
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    justify-content: center;
+}
+
+/* site-box */
+.site .site-box {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 5px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #eee;
+}
+
+.site .site-box .site-item {
+    display: flex;
+    height: 36px;
+    padding: 6px 6px;
+    background: #f5f5f5;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.site .site-box .site-item img {
+    height: 24px;
+    width: 24px;
+    margin-right: 6px;
+}
+
+.site .site-box .site-item h3 {
+    white-space: nowrap;
+    height: 24px;
+    font-size: 16px;
+    color: #333;
+    line-height: 24px;
+}
+
+.page-loader-box {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.7); /* 使用半透明的背景色 */
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999; /* 确保遮罩层位于其他内容之上 */
+}
+
+.page-loader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 10px;
+    background: #3498DB;
+    border-radius: 5px;
+    animation: load 1.5s ease-in-out infinite; /* 假设动画持续时间为1秒 */
+}
+
+.page-loader:before,
+.page-loader:after {
+    position: absolute;
+    display: block;
+    content: "";
+    height: 10px;
+    border-radius: 5px;
+    animation: load 1.5s ease-in-out infinite; /* 假设动画持续时间为1秒 */
+}
+
+.page-loader:before {
+    top: -20px;
+    left: 10px;
+    width: 80px;
+    background: #EF4836;
+}
+
+.page-loader:after {
+    bottom: -20px;
+    left: 15px; /* 调整位置，使其与.page-loader和:before伪元素不重叠 */
+    width: 70px;
+    background: #F5AB35;
+}
+
+@keyframes load {
+    0% {
+        transform: translateX(50px); /* 初始状态 */
+    }
+    50% {
+        transform: translateX(-60px);
+    }
+    100% {
+        transform: translateX(50px); /* 结束状态与初始状态相同 */
+    }
+}
+
+
+/* 大屏幕样式 */
+@media screen and (max-width: 1920px) {
+
+}
+
+/* 手机屏幕上的样式 */
+@media screen and (max-width: 1000px) {
+    .site {
+        width: 90vw;
+    }
+
+    /* site-box */
+    .site .site-box {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .site .site-box .site-item {
+        display: flex;
+        height: 96px;
+        padding: 6px 6px;
+        border-radius: 24px;
+    }
+
+    .site .site-box .site-item img {
+        height: 72px;
+        width: 72px;
+        margin-right: 24px;
+    }
+
+    .site .site-box .site-item h3 {
+        height: 72px;
+        font-size: 32px;
+        line-height: 72px;
+    }
+
+    .page-loader {
+        width: 200px;
+        height: 30px;
+        border-radius: 20px;
+        animation: load 1s ease-in-out infinite; /* 假设动画持续时间为1秒 */
+    }
+
+    .page-loader:before,
+    .page-loader:after {
+        height: 30px;
+        border-radius: 20px;
+        animation: load 1s ease-in-out infinite; /* 假设动画持续时间为1秒 */
+    }
+
+    .page-loader:before {
+        top: -40px;
+        left: 10px;
+        width: 160px;
+    }
+
+    .page-loader:after {
+        bottom: -40px;
+        left: 15px; /* 调整位置，使其与.page-loader和:before伪元素不重叠 */
+        width: 150px;
+    }
+
+    @keyframes load {
+        0% {
+            transform: translateX(50px); /* 初始状态 */
+        }
+        50% {
+            transform: translateX(-60px);
+        }
+        100% {
+            transform: translateX(50px); /* 结束状态与初始状态相同 */
+        }
+    }
+}

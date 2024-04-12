@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FrankNav</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/index.css">
+</head>
+<body>
+
+<div class="content-box" id="content-box">
+    <div class="header" id="header">
+        <div class="logo">
+            <img src="../static/img/hot-site/news.png" alt="LOGO">
+        </div>
+        <div class="navs" id="navs">
+            <button onclick=on_navs_btn_clicked("#")>主页</button>
+            <button onclick=on_navs_btn_clicked("#ai-conversation")>AI 对话</button>
+            <button onclick=on_navs_btn_clicked("#ai-image")>AI 绘图</button>
+            <button onclick={location.href="/hot"}>每日热榜</button>
+            <button onclick={location.href="/news"}>时事新闻</button>
+        </div>
+        <button id="toggle-btn" onclick="on_toggle_btn_clicked()">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="32" height="32" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: 100%; transform: translate3d(0px, 0px, 0px); content-visibility: visible;"><defs><clipPath id="__lottie_element_2"><rect width="24" height="24" x="0" y="0"></rect></clipPath><clipPath id="__lottie_element_16"><path d="M0,0 L24,0 L24,24 L0,24z"></path></clipPath></defs><g clip-path="url(#__lottie_element_2)"><g clip-path="url(#__lottie_element_16)" transform="matrix(1,0,0,1,0,0)" opacity="1" style="display: block;"><g transform="matrix(1,0,0,1,12,22)" opacity="1" style="display: block;"><g opacity="1" transform="matrix(1.3328100442886353,0,0,0.9994699954986572,0,0)"><path fill="rgb(0,0,0)" fill-opacity="1" d=" M-6,-4 C-6,-4 6,-4 6,-4"></path><path stroke-linecap="butt" stroke-linejoin="miter" fill-opacity="0" stroke-miterlimit="4" stroke="rgb(0,0,0)" stroke-opacity="1" stroke-width="2" d=" M-6,-4 C-6,-4 6,-4 6,-4"></path></g></g><g transform="matrix(1,0,0,1,12,16)" opacity="1" style="display: block;"><g opacity="1" transform="matrix(1.3328100442886353,0,0,0.9994699954986572,0,0)"><path fill="rgb(0,0,0)" fill-opacity="1" d=" M-6,-4 C-6,-4 6,-4 6,-4"></path><path stroke-linecap="butt" stroke-linejoin="miter" fill-opacity="0" stroke-miterlimit="4" stroke="rgb(0,0,0)" stroke-opacity="1" stroke-width="2" d=" M-6,-4 C-6,-4 6,-4 6,-4"></path></g></g><g transform="matrix(1,0,0,1,12,9.998000144958496)" opacity="1" style="display: block;"><g opacity="1" transform="matrix(1.3328100442886353,0,0,0.9994699954986572,0,0)"><path fill="rgb(0,0,0)" fill-opacity="1" d=" M-6,-4 C-6,-4 6,-4 6,-4"></path><path stroke-linecap="butt" stroke-linejoin="miter" fill-opacity="0" stroke-miterlimit="4" stroke="rgb(0,0,0)" stroke-opacity="1" stroke-width="2" d=" M-6,-4 C-6,-4 6,-4 6,-4"></path></g></g></g></g></svg>
+        </button>
+    </div>
+
+    <div class="content">
+        <div class="search" id="search">
+            <label>
+                <input type="text" placeholder="百度一下" id="search-input">
+                <svg width="36" height="36" viewBox="0 0 36 36" onclick="openSearchPage()" fill="none"
+                     xmlns="http://www.w3.org/2000/svg"
+                     preserveAspectRatio="xMidYMid meet">
+                    <path d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z"
+                          stroke="#999" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M22 22L20 20" stroke="#999" stroke-width="4" stroke-linecap="round"
+                          stroke-linejoin="round"></path>
+                </svg>
+            </label>
+            <div class="btn-list" id="btn-list">
+                <button class="active" id="baidu" onclick="handleChangeSearchPrefix(this, `https://www.baidu.com/s?wd=`)">
+                    百度
+                </button>
+                <button id="google" onclick="handleChangeSearchPrefix(this, `https://www.google.com/search?q=`)">
+                    Google
+                </button>
+                <button id="bing" onclick="handleChangeSearchPrefix(this, `https://cn.bing.com/search?q=`)">
+                    Bing
+                </button>
+                <button id="sougou" onclick="handleChangeSearchPrefix(this, `https://www.sogou.com/web?query=`)">
+                    搜狗
+                </button>
+                <button id="360" onclick="handleChangeSearchPrefix(this, `https://www.so.com/s?q=`)">
+                    360
+                </button>
+                <button id="toutiao" onclick="handleChangeSearchPrefix(this, `https://so.toutiao.com/search?dvpf=pc&source=input&keyword=`)">
+                    头条
+                </button>
+            </div>
+        </div>
+
+        <div class="sites" id="ai-conversation">
+            <div class="site-group-title">
+                <h4>AI 对话</h4>
+            </div>
+
+            <div class="site-box">
+                <div class="site" onclick="{window.open('https://chat.openai.com/');}">
+                    <div class="site-img">
+                        <img src="../static/img/site-logo/chatgpt.png" alt="ChatGPT">
+                    </div>
+                    <div class="site-content">
+                        <span class="title">ChatGPT</span>
+                        <span class="desc">By OpenAI</span>
+                    </div>
+                </div>
+                <div class="site" onclick="{window.open('https://gemini.google.com/app');}">
+                    <div class="site-img">
+                        <img src="../static/img/site-logo/gemini.png" alt="Gemini">
+                    </div>
+                    <div class="site-content">
+                        <span class="title">Gemini</span>
+                        <span class="desc">By Google</span>
+                    </div>
+                </div>
+                <div class="site" onclick="{window.open('https://you.com/?chatMode=default');}">
+                    <div class="site-img">
+                        <img src="../static/img/site-logo/you.png" alt="You">
+                    </div>
+                    <div class="site-content">
+                        <span class="title">You</span>
+                        <span class="desc">人工智能搜索聊天机器人</span>
+                    </div>
+                </div>
+                <div class="site" onclick="{window.open('https://www.perplexity.ai/');}">
+                    <div class="site-img">
+                        <img src="../static/img/site-logo/perplexity.png" alt="Perplexity">
+                    </div>
+                    <div class="site-content">
+                        <span class="title">Perplexity</span>
+                        <span class="desc">智能总结并展示信息源</span>
+                    </div>
+                </div>
+                <div class="site" onclick="{window.open('https://yiyan.baidu.com/');}">
+                    <div class="site-img">
+                        <img src="../static/img/site-logo/wxyiyan.png" alt="文心一言">
+                    </div>
+                    <div class="site-content">
+                        <span class="title">文心一言</span>
+                        <span class="desc">百度出品</span>
+                    </div>
+                </div>
+                <div class="site" onclick="{window.open('https://www.moonshot.ai/');}">
+                    <div class="site-img">
+                        <img src="../static/img/site-logo/moonshot.png" alt="Moonshot">
+                    </div>
+                    <div class="site-content">
+                        <span class="title">Moonshot AI</span>
+                        <span class="desc">致力于寻求将能源转化为智能</span>
+                    </div>
+                </div>
+                <div class="site" onclick="{window.open('https://luca.cn/home')}">
+                    <div class="site-img">
+                        <img src="../static/img/site-logo/luca.png" alt="luca">
+                    </div>
+                    <div class="site-content">
+                        <span class="title">面壁露卡·luca</span>
+                        <span class="desc">基于面壁智能的大语言模型</span>
+                    </div>
+                </div>
+                <div class="site" onclick="{window.open('https://hunyuan.tencent.com/')}">
+                    <div class="site-img">
+                        <img src="../static/img/site-logo/hunyuan.png" alt="混元">
+                    </div>
+                    <div class="site-content">
+                        <span class="title">腾讯混元</span>
+                        <span class="desc">腾讯研发的大语言模型</span>
+                    </div>
+                </div>
+                <div class="site" onclick="{window.open('https://tongyi.aliyun.com/')}">
+                    <div class="site-img">
+                        <img src="../static/img/site-logo/tongyi.png" alt="阿里通义">
+                    </div>
+                    <div class="site-content">
+                        <span class="title">阿里通义</span>
+                        <span class="desc">阿里云出品</span>
+                    </div>
+                </div>
+                <div class="site" onclick="{window.open('https://chatglm.cn/')}">
+                    <div class="site-img">
+                        <img src="../static/img/site-logo/chatglm.png" alt="智谱清言">
+                    </div>
+                    <div class="site-content">
+                        <span class="title">智谱清言</span>
+                        <span class="desc">中国人自己的大模型</span>
+                    </div>
+                </div>
+                <div class="site" onclick="{window.open('https://www.doubao.com/')}">
+                    <div class="site-img">
+                        <img src="../static/img/site-logo/doubao.png" alt="字节豆包">
+                    </div>
+                    <div class="site-content">
+                        <span class="title">字节豆包</span>
+                        <span class="desc">AI 聊天智能对话问答助手</span>
+                    </div>
+                </div>
+                <div class="site" onclick="{window.open('https://techday.sensetime.com/list')}">
+                    <div class="site-img">
+                        <img src="../static/img/site-logo/sensetime.png" alt="商汤日日新">
+                    </div>
+                    <div class="site-content">
+                        <span class="title">商汤日日新</span>
+                        <span class="desc">商汤 AI 列表</span>
+                    </div>
+                </div>
+                <div class="site" onclick="{window.open('https://beta.tiangong.cn/')}">
+                    <div class="site-img">
+                        <img src="../static/img/site-logo/tiangong.png" alt="天工 AI">
+                    </div>
+                    <div class="site-content">
+                        <span class="title">天工 AI</span>
+                        <span class="desc">昆仑万维出品</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sites" id="ai-image">
+            <div class="site-group-title">
+                <h4>AI 绘图</h4>
+            </div>
+
+            <div class="site-box">
+                <div class="site" onclick="{window.open('https://d.design/');}">
+                    <div class="site-img">
+                        <img src="../static/img/site-logo/duiyou.png" alt="堆友">
+                    </div>
+                    <div class="site-content">
+                        <span class="title">堆友</span>
+                        <span class="desc">Alibaba Design旗下设计服务平台</span>
+                    </div>
+                </div>
+                <div class="site" onclick="{window.open('https://tongyi.aliyun.com/wanxiang/');}">
+                    <div class="site-img">
+                        <img src="../static/img/site-logo/tongyiwanxiang.png" alt="通义万象">
+                    </div>
+                    <div class="site-content">
+                        <span class="title">通义万象</span>
+                        <span class="desc">阿里云通义万象</span>
+                    </div>
+                </div>
+                <div class="site" onclick="{window.open('https://app.leonardo.ai/');}">
+                    <div class="site-img">
+                        <img src="../static/img/site-logo/leonardo.png" alt="Leonardo">
+                    </div>
+                    <div class="site-content">
+                        <span class="title">Leonardo</span>
+                        <span class="desc">Create production-quality visual assets</span>
+                    </div>
+                </div>
+                <div class="site" onclick="{window.open('https://lexica.art/');}">
+                    <div class="site-img">
+                        <img src="../static/img/site-logo/lexica.png" alt="Lexica">
+                    </div>
+                    <div class="site-content">
+                        <span class="title">Lexica</span>
+                        <span class="desc">AI image gen</span>
+                    </div>
+                </div>
+                <div class="site" onclick="{window.open('https://www.dreamup.com/');}">
+                    <div class="site-img">
+                        <img src="../static/img/site-logo/dreamup.png" alt="DreamUp">
+                    </div>
+                    <div class="site-content">
+                        <span class="title">DreamUp</span>
+                        <span class="desc">每周免费10次30张图片生成</span>
+                    </div>
+                </div>
+                <div class="site" onclick="{window.open('https://copilot.microsoft.com/');}">
+                    <div class="site-img">
+                        <img src="../static/img/site-logo/copilot.png" alt="Microsoft Copilot">
+                    </div>
+                    <div class="site-content">
+                        <span class="title">Microsoft Copilot</span>
+                        <span class="desc">ChatGPT、DALL·E 3</span>
+                    </div>
+                </div>
+                <div class="site" onclick="{window.open('https://www.midjourney.com/showcase')}">
+                    <div class="site-img">
+                        <img src="../static/img/site-logo/midjourney.png" alt="Midjourney">
+                    </div>
+                    <div class="site-content">
+                        <span class="title">Midjourney</span>
+                        <span class="desc">最强AI生图</span>
+                    </div>
+                </div>
+                <div class="site" onclick="{window.open('https://yige.baidu.com/')}">
+                    <div class="site-img">
+                        <img src="../static/img/site-logo/wenxinyige.png" alt="文心一格">
+                    </div>
+                    <div class="site-content">
+                        <span class="title">文心一格</span>
+                        <span class="desc">AI艺术和创意辅助平台</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../static/js/index.js"></script>
+<script>
+    let search_prefix = "https://www.baidu.com/s?wd=";
+    // 获取input元素,为input元素添加keydown事件处理函数
+    const search_input = document.getElementById('search-input');
+    search_input.addEventListener('keydown', handleEnterKey);
+
+    // 处理搜索框Enter键的函数
+    function handleEnterKey(event) {
+        if (event.keyCode === 13 || event.which === 13) {
+            openSearchPage();
+        }
+    }
+
+    function openSearchPage() {
+        const input = document.getElementById("search-input").value;
+        window.open(search_prefix + input, '_blank');
+    }
+
+</script>
+
+</body>
+</html>

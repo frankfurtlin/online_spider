@@ -1,0 +1,169 @@
+@import url('global.css');
+
+/* article-box */
+.news-box {
+    margin: 20px 0;
+}
+
+.news-item {
+    display: flex;
+    margin-top: 20px;
+}
+
+.text-red {
+    color: #F70 !important;
+}
+
+.background-red {
+    background-color: #F70 !important;
+}
+
+.news-item-time {
+    margin-top: 0;
+    flex-basis: 5%;
+}
+
+.timeline {
+    position: relative;
+    background-color: #fff;
+    flex-basis: 3%;
+}
+
+.timeline .point {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    padding: 0 10px;
+    background-color: #fff;
+}
+
+.timeline .point:before {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #dde0e5;
+    content: '';
+}
+
+.timeline .line {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -2px;
+    width: 4px;
+    height: 100%;
+    background-color: #dde0e5;
+}
+
+.news-item-content {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 40px;
+    flex-basis: 92%;
+    text-decoration: none !important;
+    background: transparent;
+    color: rgba(0, 0, 0, .87);
+}
+
+.news-item-title {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.news-item-desc {
+    margin-top: 10px;
+    font-size: 12px;
+}
+
+.load-more-btn {
+    width: 100%;
+    height: 50px;
+    cursor: pointer;
+    border: 1px solid #e5e8e9;
+    background: #fff;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    font-size: 18px;
+    font-weight: 400;
+    overflow-anchor: none;
+}
+
+.load-more-btn:hover {
+    border-color: #f43e3d;
+    color: #f43e3d !important;
+}
+
+/* 加载动画 */
+.loader {
+    border: 5px solid #f3f3f3; /* 浅色 */
+    border-top: 5px solid #3498db; /* 蓝色 */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin: 10px auto;
+    animation: spin 1.2s linear infinite;
+    display: none;
+}
+
+/* 加载动画的关键帧 */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.no-display {
+    display: none;
+}
+
+/* 大屏幕样式 */
+@media screen and (max-width: 1920px) {
+
+}
+
+/* 手机屏幕上的样式 */
+@media screen and (max-width: 1000px) {
+    .news-item-time {
+        font-size: 32px;
+        flex-basis: 10%;
+    }
+
+    .timeline {
+        flex-basis: 3%;
+    }
+
+    .news-item-content {
+        flex-basis: 87%;
+    }
+
+    .news-item-title {
+        font-size: 36px;
+        font-weight: 850;
+        margin-bottom: 15px;
+    }
+
+    .news-item-detail {
+        font-size: 32px;
+    }
+
+    .news-item-desc {
+        font-size: 28px;
+    }
+
+    .load-more-btn {
+        height: 90px;
+        font-size: 36px;
+        font-weight: 450;
+        border: 2px solid #e5e8e9;
+    }
+
+    .loader {
+        width: 80px;
+        height: 80px;
+    }
+}

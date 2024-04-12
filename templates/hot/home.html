@@ -1,0 +1,50 @@
+{% extends 'hot/base.html' %}
+
+{% block title %}今日热榜{% endblock %}
+
+{% block menu_item_id %}home{% endblock %}
+
+{% block content %}
+    <div class="site-items" id="site-items">
+        <button class="site-item" onclick="loadSiteHots(this, 'baidu')">
+            <img src="../../static/img/hot-site/baidu.png" alt="百度">
+            <span>百度</span>
+        </button>
+        <button class="site-item" onclick="loadSiteHots(this, 'sina')">
+            <img src="../../static/img/hot-site/sina.png" alt="新浪">
+            <span>新浪</span>
+        </button>
+        <button class="site-item" onclick="loadSiteHots(this, 'tencent')">
+            <img src="../../static/img/hot-site/tencent.png" alt="腾讯">
+            <span>腾讯</span>
+        </button>
+        <button class="site-item" onclick="loadSiteHots(this, 'wangyi')">
+            <img src="../../static/img/hot-site/wangyi.png" alt="网易">
+            <span>网易</span>
+        </button>
+        <button class="site-item" onclick="loadSiteHots(this, 'toutiao')">
+            <img src="../../static/img/hot-site/toutiao.png" alt="头条">
+            <span>头条</span>
+        </button>
+        <button class="site-item" onclick="loadSiteHots(this, 'fenghuang')">
+            <img src="../../static/img/hot-site/fenghuang.png" alt="凤凰网">
+            <span>凤凰网</span>
+        </button>
+        <button class="site-item" onclick="loadSiteHots(this, 'msn')">
+            <img src="../../static/img/hot-site/msn.png" alt="MSN">
+            <span>MSN</span>
+        </button>
+
+        <button class="site-item" id="toggle-btn">
+            <span>展开</span>
+            <svg id="arrow-svg" fill="none" stroke="currentColor" stroke-width="4" viewBox="0 0 48 48" aria-hidden="true"
+                 focusable="false">
+                <path d="M39.6 17.443 24.043 33 8.487 17.443"></path>
+            </svg>
+        </button>
+    </div>
+
+    <div class="article-box" id="article-box">
+        {% include 'hot/hot-content.html' with context %}
+    </div>
+{% endblock %}

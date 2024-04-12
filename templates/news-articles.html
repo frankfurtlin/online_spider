@@ -1,0 +1,29 @@
+{% for article in news.articles %}
+    <div class="news-item">
+        <p class="news-item-time {% if article.mark == 1 %}text-red{% endif %}">{{ article.time }}</p>
+
+        <div class="timeline">
+            <span class="point"></span>
+            <span class="line {% if article.mark == 1 %}background-red{% endif %}"></span>
+        </div>
+
+        <a class="news-item-content" href="{{ article.url }}">
+            <span class="news-item-title {% if article.mark == 1 %}text-red{% endif %}">
+                {{ article.title }}
+            </span>
+            <span class="news-item-detail">
+                {{ article.detail }}
+            </span>
+            <span class="news-item-desc">
+                {{ article.desc }}
+            </span>
+        </a>
+    </div>
+{% endfor %}
+
+<div class="no-display">
+    <span id="xueqiu_max_id">{{ news.xueqiu_max_id }}</span>
+    <span id="dsb_page">{{ news.dsb_page }}</span>
+    <span id="jinse_bottom_id">{{ news.jinse_bottom_id }}</span>
+    <span id="tmtpost_offset">{{ news.tmtpost_offset }}</span>
+</div>

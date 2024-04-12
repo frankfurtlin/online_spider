@@ -1,0 +1,308 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&subset=devanagari,latin-ext');
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    /*font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";*/
+    font-family: 'Poppins', sans-serif;
+    color: #212112;
+    background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat-back.svg');
+    background-position: center;
+    background-repeat: repeat;
+    background-size: 7%;
+    background-color: #fff;
+    overflow-x: hidden;
+    transition: all 200ms linear;
+    /*background-image: url("../img/background.jpg");*/
+    /*background-attachment: fixed;*/
+    /*background-repeat: no-repeat;*/
+    /*background-size: cover;*/
+    /*z-index: -999;*/
+}
+
+/*-------------------------------------------*/
+
+.content-box {
+    /*margin-left: 180px;*/
+    /*height: 100%;*/
+}
+
+/*-------------------------------------------*/
+
+.header {
+    position: fixed;
+    top: 0;
+    /*left: 180px;*/
+    left: 0;
+    width: 100%;
+    height: 60px; /* 标题栏高度 */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f8f9fa;
+    z-index: 1000;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    /*top: 10px;*/
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo img {
+    width: 48px;
+    height: 48px;
+}
+
+.navs {
+    margin-left: 340px;
+    display: block;
+}
+
+.navs button {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    margin: 0;
+    padding: 10px 15px;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-weight: 500;
+    transition: all 200ms linear;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#toggle-btn {
+    display: none;
+}
+
+/*-------------------------------------------*/
+
+.content {
+    /*margin-left: 180px;*/
+    margin-top: 60px;
+    width: 100%;
+    /*height: 100vh;*/
+}
+
+/*-------------------------------------------*/
+
+.search {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 230px;
+    margin-bottom: 30px;
+}
+
+.search label {
+    position: relative;
+}
+
+.search input {
+    width: 50vw;
+    height: 30px;
+    border-radius: 50px;
+    /*color: #fff;*/
+    font-size: 16px;
+    border: 1px solid rgba(200, 200, 200, .05);
+    padding: 9px 30px 9px 20px;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    background-color: rgba(180, 180, 180, .6) !important;
+}
+
+.search svg {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateX(0) translateY(-35%);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-list {
+    margin-top: 20px;
+}
+
+.btn-list button {
+    margin: 0;
+    padding: 10px 15px;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-list button.active {
+    background-color: #d9d9d9;
+    border-radius: 8px;
+    color: #666666;
+}
+
+/*-------------------------------------------*/
+
+.sites {
+    /*margin-bottom: 100px;*/
+}
+
+.site-group-title {
+    width: 100px;
+    display: flex;
+    align-items: center;
+    /*justify-content: center;*/
+    margin-left: 20px;
+    /*background-color: #f5f5f5;*/
+    /*border: 1px solid #e5e5e5;*/
+    /*border-radius: 10px;*/
+}
+
+.site-group-title h4 {
+    font-size: 26px;
+    font-weight: 800;
+}
+
+.site-box {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 0 20px;
+}
+
+.site {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    /*justify-content: center;*/
+    background-color: #f5f5f5;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    padding: 3px 6px;
+    cursor: pointer;
+}
+
+.site-img {
+    margin: 0 12px 0 10px;
+}
+
+.site-img img {
+    width: 32px;
+    height: 32px;
+    mix-blend-mode: multiply; /* 使用混合模式 */
+}
+
+.site-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.site-content .title {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 3px;
+}
+
+.site-content .desc {
+    font-size: 12px;
+}
+
+/* 大屏幕样式 */
+@media screen and (max-width: 1920px) {
+
+}
+
+/* 手机屏幕上的样式 */
+@media screen and (max-width: 1000px) {
+    .header {
+        justify-content: center;
+    }
+
+    .logo {
+        margin-left: 0;
+    }
+
+    .navs {
+        display: none;
+        margin-left: 0;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background-color: #f1f1f1;
+        transition: opacity 1s ease;
+    }
+
+    .navs button {
+        display: block;
+        width: 100%;
+        color: #080808;
+        text-align: left;
+        padding-left: 15px;
+        border-bottom: 1px solid #d8d8d8;
+    }
+
+    #toggle-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 60px;
+        height: 60px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 14px;
+        background-color: transparent; /* 使按钮背景透明 */
+        border: none;
+        cursor: pointer;
+        color: #8a8a8a;
+        /* 添加过渡效果 */
+        transition: transform 0.3s;
+    }
+
+    #toggle-btn svg {
+        width: 32px;
+        height: 32px;
+    }
+
+    /*-------------------------------------------*/
+    .search input {
+        width: 70vw;
+    }
+
+    /*-------------------------------------------*/
+    .site-box {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 10px;
+    }
+
+    .site {
+        padding: 2px 4px;
+    }
+
+    .site-img {
+        margin: 0 8px 0 4px;
+    }
+
+    .site-content .title {
+        font-size: 16px;
+        margin-bottom: 2px;
+    }
+
+    .site-content .desc {
+        font-size: 8px;
+    }
+}

@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="referrer" content="no-referrer">
+    <link rel="icon" href="../../static/img/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="../../static/css/hot.css">
+    <title>{% block title %}Base Template{% endblock %}</title>
+</head>
+<body>
+<div class="header">
+    <div class="header-box">
+        <div class="logo">
+            <a href="/hot" target="_self">
+                <strong class="logo-text">
+                    Trending.Today
+                </strong>
+            </a>
+        </div>
+
+        <div class="menu" id="menu">
+            <div class="menu-item" id="hot" onclick="window.location.href='/hot'">综合</div>
+            <div class="menu-item" id="technology" onclick="window.location.href='/hot/technology'">科技</div>
+            <div class="menu-item" id="entertainment" onclick="window.location.href='/hot/entertainment'">娱乐</div>
+            <div class="menu-item" id="finance" onclick="window.location.href='/hot/finance'">财经</div>
+            <div class="menu-item" id="community" onclick="window.location.href='/hot/community'">社区</div>
+            <div class="menu-item" id="develop" onclick="window.location.href='/hot/develop'">开发</div>
+        </div>
+
+        <div class="header-control">
+            <button class="control-btn" id="theme-toggle" onclick="on_toggle_theme_btn_clicked()">
+                <svg fill="none" stroke="currentColor" stroke-width="4" viewBox="0 0 48 48" aria-hidden="true"
+                     focusable="false" class="arco-icon arco-icon-moon-fill">
+                    <path fill="currentColor" stroke="none"
+                          d="M42.108 29.769c.124-.387-.258-.736-.645-.613A17.99 17.99 0 0 1 36 30c-9.941 0-18-8.059-18-18 0-1.904.296-3.74.844-5.463.123-.387-.226-.768-.613-.645C10.558 8.334 5 15.518 5 24c0 10.493 8.507 19 19 19 8.482 0 15.666-5.558 18.108-13.231Z"></path>
+                </svg>
+            </button>
+            <button id="menu-toggle" onclick="toggleMenu()">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                     viewBox="0 0 24 24" width="32" height="32" preserveAspectRatio="xMidYMid meet">
+                    <defs>
+                        <clipPath id="__lottie_element_2">
+                            <rect width="24" height="24" x="0" y="0"></rect>
+                        </clipPath>
+                        <clipPath id="__lottie_element_16">
+                            <path d="M0,0 L24,0 L24,24 L0,24z"></path>
+                        </clipPath>
+                    </defs>
+                    <g clip-path="url(#__lottie_element_2)">
+
+                        <g clip-path="url(#__lottie_element_16)" transform="matrix(1,0,0,1,0,0)" opacity="1"
+                           style="display: block;">
+
+                            <g class="menu-toggle-svg-g" transform="matrix(1,0,0,1,12,22)" opacity="1"
+                               style="display: block;">
+
+                                <g opacity="1" transform="matrix(1.3328100442886353,0,0,0.9994699954986572,0,0)">
+
+                                    <path fill="rgb(0,0,0)" fill-opacity="1" d=" M-6,-4 C-6,-4 6,-4 6,-4"></path>
+
+                                    <path stroke-linecap="butt" stroke-linejoin="miter" fill-opacity="0"
+
+                                          stroke-miterlimit="4" stroke="var(--control-btn-color)" stroke-opacity="1"
+                                          stroke-width="2"
+                                          d=" M-6,-4 C-6,-4 6,-4 6,-4"></path>
+                                </g>
+                            </g>
+
+                            <g transform="matrix(1,0,0,1,12,16)" opacity="1" style="display: block;">
+
+                                <g class="menu-toggle-svg-g" opacity="1"
+                                   transform="matrix(1.3328100442886353,0,0,0.9994699954986572,0,0)">
+
+                                    <path fill="rgb(0,0,0)" fill-opacity="1" d=" M-6,-4 C-6,-4 6,-4 6,-4"></path>
+
+                                    <path stroke-linecap="butt" stroke-linejoin="miter" fill-opacity="0"
+
+                                          stroke-miterlimit="4" stroke="var(--control-btn-color)" stroke-opacity="1"
+                                          stroke-width="2"
+                                          d=" M-6,-4 C-6,-4 6,-4 6,-4"></path>
+                                </g>
+                            </g>
+
+                            <g transform="matrix(1,0,0,1,12,9.998000144958496)" opacity="1" style="display: block;">
+
+                                <g class="menu-toggle-svg-g" opacity="1"
+                                   transform="matrix(1.3328100442886353,0,0,0.9994699954986572,0,0)">
+
+                                    <path fill="rgb(0,0,0)" fill-opacity="1" d=" M-6,-4 C-6,-4 6,-4 6,-4"></path>
+
+                                    <path stroke-linecap="butt" stroke-linejoin="miter" fill-opacity="0"
+
+                                          stroke-miterlimit="4" stroke="var(--control-btn-color)" stroke-opacity="1"
+                                          stroke-width="2"
+                                          d=" M-6,-4 C-6,-4 6,-4 6,-4"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="main">
+    <div class="content-box">
+        {% block content %}{% endblock %}
+    </div>
+    <div class="aside">
+        <div class="aside-img">
+            <img src="../../static/img/asiayun.webp" alt="">
+        </div>
+        <div class="aside-btns">
+            <button class="btn">Hello</button>
+            <button class="btn">Hello</button>
+            <button class="btn">Hello</button>
+            <button class="btn">Hello</button>
+            <button class="btn">Hello</button>
+        </div>
+    </div>
+</div>
+
+<div id="back-to-top" class="back-to-top-container">
+    <svg fill="none" stroke="currentColor" stroke-width="4" viewBox="0 0 48 48" aria-hidden="true"
+         focusable="false"
+         class="arco-icon arco-icon-arrow-up" style="font-size: 28px;">
+        <path d="M11.27 20.272 23.997 7.544l12.728 12.728M24 43V8.705"></path>
+    </svg>
+</div>
+
+<div class="page-loader-box" id="page-loader-box">
+    <div class="page-loader"></div>
+</div>
+
+<script>
+    function loadSiteHots(btn, site, param = '') {
+        document.getElementById('page-loader-box').style.display = 'flex';
+        console.log(`Loading hot articles for site:${site}, param:${param}`);
+        // 使用 Fetch API 发送异步请求到后端，根据 site 参数获取对应的文章数据
+        fetch(`/load-hots?site=${encodeURIComponent(site)}&param=${encodeURIComponent(param)}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(data => {
+                // console.log(data);
+                document.getElementById('article-box').innerHTML = data;
+                document.getElementById('page-loader-box').style.display = 'none';
+
+                if (param === '') {
+                    document.querySelectorAll('.site-item').forEach(item => {
+                        item.style.color = 'var(--menu-color)';
+                        item.style.backgroundColor = 'var(--background-color)';
+                        item.style.borderRadius = '0';
+                    });
+                    btn.style.color = 'var(--site-item-pick-color)';
+                    btn.style.backgroundColor = 'var(--site-item-pick-bg-color)';
+                    btn.style.borderRadius = '6px';
+                } else {
+                    document.querySelectorAll('.tab-item').forEach(item => {
+                        if (item.innerHTML !== btn.innerHTML) {
+                            item.style.borderBottomColor = 'transparent';
+                        } else {
+                            item.style.borderBottom = '2px solid var(--focus-menu-color)';
+                        }
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+    function on_toggle_theme_btn_clicked() {
+        let theme = localStorage.getItem('theme');
+        if (theme === 'light'){
+            theme = 'dark';
+        }
+        else{
+            theme = 'light';
+        }
+        toggleTheme(theme);
+    }
+
+    function toggleTheme(theme) {
+        // 切换CSS变量
+        const root = document.documentElement;
+        if (theme === "light" ) {
+            root.style.setProperty('--body-background-color', 'rgb(247, 247, 247)');
+            root.style.setProperty('--background-color', 'rgb(255, 255, 255)');
+            root.style.setProperty('--content-background-color', 'rgb(242, 243, 245)');
+            root.style.setProperty('--border-color', 'rgb(229, 231, 235)');
+            root.style.setProperty('--border-shadow-color', 'rgba(0, 0, 0, .05)');
+
+            root.style.setProperty('--logo-color', 'rgb(29, 33, 41)');
+            root.style.setProperty('--menu-color', 'rgb(78, 89, 105)');
+            root.style.setProperty('--focus-menu-color', 'rgb(22, 93, 255)');
+            root.style.setProperty('--control-btn-color', 'rgb(78, 89, 105)');
+            root.style.setProperty('--site-item-pick-color', 'rgb(22, 93, 255)');
+            root.style.setProperty('--site-item-pick-bg-color', 'rgb(242, 243, 245)');
+            root.style.setProperty('--toggle-btn-color', 'rgba(134, 144, 156, 0.9)');
+
+            root.style.setProperty('--article-rank-span-color', 'rgb(145, 150, 161)');
+            root.style.setProperty('--article-title-color', 'rgb(29, 33, 41)');
+            root.style.setProperty('--article-detail-color', 'rgb(98, 102, 117)');
+            root.style.setProperty('--article-hot-color', 'rgb(98, 102, 117)');
+
+            root.style.setProperty('--back-to-top-color', 'rgb(134, 144, 156)');
+
+            localStorage.setItem('theme', 'light');
+        } else {
+            root.style.setProperty('--body-background-color', 'rgb(13, 17, 23)');
+            root.style.setProperty('--background-color', 'rgb(22, 27, 34)');
+            root.style.setProperty('--content-background-color', 'rgba(0, 0, 0, 0.08)');
+            root.style.setProperty('--border-color', 'rgb(51, 51, 53)');
+            root.style.setProperty('--border-shadow-color', 'rgba(255, 255, 255, .05)');
+
+            root.style.setProperty('--logo-color', 'rgba(255, 255, 255, 0.9)');
+            root.style.setProperty('--menu-color', 'rgba(255, 255, 255, 0.7)');
+            root.style.setProperty('--focus-menu-color', 'rgb(60, 126, 255)');
+            root.style.setProperty('--control-btn-color', 'rgba(255, 255, 255, 0.7)');
+            root.style.setProperty('--site-item-pick-color', 'rgb(255, 255, 255)');
+            root.style.setProperty('--site-item-pick-bg-color', 'rgb(52, 52, 53)');
+            root.style.setProperty('--toggle-btn-color', 'rgba(255, 255, 255, 0.5)');
+
+            root.style.setProperty('--article-rank-span-color', 'rgb(255, 150, 7)');
+            root.style.setProperty('--article-title-color', 'rgba(255, 255, 255, 0.9)');
+            root.style.setProperty('--article-detail-color', 'rgba(255, 255, 255, 0.5)');
+            root.style.setProperty('--article-hot-color', 'rgba(255, 255, 255, 0.5)');
+
+            root.style.setProperty('--back-to-top-color', 'rgb(134, 144, 156)');
+
+            localStorage.setItem('theme', 'dark');
+        }
+    }
+
+    function toggleMenu() {
+        const display_type = document.getElementById("menu").style.display;
+        // console.log(display_type);
+        if (!display_type || display_type === "none") {
+            document.getElementById("menu").style.display = "flex";
+            document.getElementById("menu-toggle").innerHTML = "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" preserveAspectRatio=\"xMidYMid meet\" style=\"width: 100%; height: 100%; transform: translate3d(0px, 0px, 0px); content-visibility: visible;\"><defs><clipPath id=\"__lottie_element_2\"><rect width=\"24\" height=\"24\" x=\"0\" y=\"0\"></rect></clipPath><clipPath id=\"__lottie_element_16\"><path d=\"M0,0 L24,0 L24,24 L0,24z\"></path></clipPath></defs><g clip-path=\"url(#__lottie_element_2)\"><g clip-path=\"url(#__lottie_element_16)\" transform=\"matrix(1,0,0,1,0,0)\" opacity=\"1\" style=\"display: block;\"><g transform=\"matrix(0.7091159820556641,-0.7050918340682983,0.7050918340682983,0.7091159820556641,14.811344146728516,14.814605712890625)\" opacity=\"1\" style=\"display: block;\"><g opacity=\"1\" transform=\"matrix(1.3328100442886353,0,0,0.9994699954986572,0,0)\"><path fill=\"rgb(0,0,0)\" fill-opacity=\"1\" d=\" M-6,-4 C-6,-4 6,-4 6,-4\"></path><path stroke-linecap=\"butt\" stroke-linejoin=\"miter\" fill-opacity=\"0\" stroke-miterlimit=\"4\" stroke=\"var(--control-btn-color)\" stroke-opacity=\"1\" stroke-width=\"2\" d=\" M-6,-4 C-6,-4 6,-4 6,-4\"></path></g></g><g transform=\"matrix(0,0,0,1,11.968999862670898,16)\" opacity=\"1\" style=\"display: block;\"><g opacity=\"1\" transform=\"matrix(1.3328100442886353,0,0,0.9994699954986572,0,0)\"><path fill=\"rgb(0,0,0)\" fill-opacity=\"1\" d=\" M-6,-4 C-6,-4 6,-4 6,-4\"></path><path stroke-linecap=\"butt\" stroke-linejoin=\"miter\" fill-opacity=\"0\" stroke-miterlimit=\"4\" stroke=\"var(--control-btn-color)\" stroke-opacity=\"1\" stroke-width=\"2\" d=\" M-6,-4 C-6,-4 6,-4 6,-4\"></path></g></g><g transform=\"matrix(0.7091159820556641,0.7050918340682983,-0.7050918340682983,0.7091159820556641,9.181036949157715,14.83504581451416)\" opacity=\"1\" style=\"display: block;\"><g opacity=\"1\" transform=\"matrix(1.3328100442886353,0,0,0.9994699954986572,0,0)\"><path fill=\"rgb(0,0,0)\" fill-opacity=\"1\" d=\" M-6,-4 C-6,-4 6,-4 6,-4\"></path><path stroke-linecap=\"butt\" stroke-linejoin=\"miter\" fill-opacity=\"0\" stroke-miterlimit=\"4\" stroke=\"var(--control-btn-color)\" stroke-opacity=\"1\" stroke-width=\"2\" d=\" M-6,-4 C-6,-4 6,-4 6,-4\"></path></g></g></g></g></svg>";
+        } else {
+            document.getElementById("menu").style.display = "none";
+            document.getElementById("menu-toggle").innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="32" height="32" preserveAspectRatio="xMidYMid meet"><defs><clipPath id="__lottie_element_2"><rect width="24" height="24" x="0" y="0"/></clipPath><clipPath id="__lottie_element_16"><path d="M0,0 L24,0 L24,24 L0,24z"/></clipPath></defs><g clip-path="url(#__lottie_element_2)"><g clip-path="url(#__lottie_element_16)" transform="matrix(1,0,0,1,0,0)" opacity="1" style="display: block;"><g class="menu-toggle-svg-g" transform="matrix(1,0,0,1,12,22)" opacity="1" style="display: block;"><g opacity="1" transform="matrix(1.3328100442886353,0,0,0.9994699954986572,0,0)"><path fill="rgb(0,0,0)" fill-opacity="1" d=" M-6,-4 C-6,-4 6,-4 6,-4"/><path stroke-linecap="butt" stroke-linejoin="miter" fill-opacity="0" stroke-miterlimit="4" stroke="var(--control-btn-color)" stroke-opacity="1" stroke-width="2" d=" M-6,-4 C-6,-4 6,-4 6,-4"/></g></g><g transform="matrix(1,0,0,1,12,16)" opacity="1" style="display: block;"><g class="menu-toggle-svg-g" opacity="1" transform="matrix(1.3328100442886353,0,0,0.9994699954986572,0,0)"><path fill="rgb(0,0,0)" fill-opacity="1" d=" M-6,-4 C-6,-4 6,-4 6,-4"/><path stroke-linecap="butt" stroke-linejoin="miter" fill-opacity="0" stroke-miterlimit="4" stroke="var(--control-btn-color)" stroke-opacity="1" stroke-width="2" d=" M-6,-4 C-6,-4 6,-4 6,-4"/></g></g><g transform="matrix(1,0,0,1,12,9.998000144958496)" opacity="1" style="display: block;"><g class="menu-toggle-svg-g" opacity="1" transform="matrix(1.3328100442886353,0,0,0.9994699954986572,0,0)"><path fill="rgb(0,0,0)" fill-opacity="1" d=" M-6,-4 C-6,-4 6,-4 6,-4"/><path stroke-linecap="butt" stroke-linejoin="miter" fill-opacity="0" stroke-miterlimit="4" stroke="var(--control-btn-color)" stroke-opacity="1" stroke-width="2" d=" M-6,-4 C-6,-4 6,-4 6,-4"/></g></g></g></g></svg>`;
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // 明暗度处理
+        const theme = localStorage.getItem('theme') || 'light';
+        localStorage.setItem('theme', theme);
+        toggleTheme(theme);
+
+        // 导航栏处理
+        const site_item_id = window.location.href.split('/')[window.location.href.split('/').length - 1];
+        const site_item = document.querySelector('#' + site_item_id);
+        site_item.style.color = 'var(--focus-menu-color)';
+        site_item.style.borderBottom = '3px solid var(--focus-menu-color)';
+
+        // 站点列表的展开与收起
+        const toggle_show_site_items_button = document.getElementById('toggle-btn');
+        const site_items_div = document.getElementById('site-items');
+        const arrow_svg = document.getElementById('arrow-svg');
+        toggle_show_site_items_button.addEventListener('click', function () {
+            if (toggle_show_site_items_button.querySelector('span').innerText === '展开') {
+                arrow_svg.querySelector('path').setAttribute('d', 'M8.4 30.557 24.043 15 39.655 30.557');
+                toggle_show_site_items_button.querySelector('span').innerText = '收起';
+                site_items_div.style.maxHeight = 'none';
+                site_items_div.style.overflowY = "visible";
+            } else {
+                arrow_svg.querySelector('path').setAttribute('d', 'M39.6 17.443 24.043 33 8.487 17.443');
+                toggle_show_site_items_button.querySelector('span').innerText = '展开';
+                site_items_div.style.maxHeight = '36px';
+                site_items_div.style.overflowY = "hidden";
+            }
+        });
+
+        // 返回顶部按钮
+        const backToTopButton = document.getElementById('back-to-top');
+        const body = document.body;
+        const html = document.documentElement;
+
+        // 滚动监听函数
+        function handleScroll() {
+            const scrollTop = html.scrollTop || body.scrollTop;
+            if (scrollTop > 200) { // 设置一个阈值，当滚动距离超过这个值时显示按钮
+                backToTopButton.style.display = 'flex';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        }
+
+        // 添加滚动监听器
+        window.addEventListener('scroll', handleScroll);
+        // 返回顶部点击事件
+        backToTopButton.addEventListener('click', function () {
+            // 使用scrollTo方法将页面滚动到顶部
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // 添加平滑滚动效果
+            });
+        });
+    });
+</script>
+</body>
+</html>

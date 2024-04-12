@@ -1,0 +1,54 @@
+{% extends 'hot/base.html' %}
+
+{% block title %}今日热榜-社区{% endblock %}
+
+{% block menu_item_id %}home{% endblock %}
+
+{% block content %}
+    <div class="site-items" id="site-items">
+        <button class="site-item" onclick="loadSiteHots(this, 'tieba')">
+            <img src="../../static/img/hot-site/tieba.png" alt="百度贴吧">
+            <span>百度贴吧</span>
+        </button>
+        <button class="site-item" onclick="loadSiteHots(this, 'hupu')">
+            <img src="../../static/img/hot-site/hupu.png" alt="虎扑">
+            <span>虎扑</span>
+        </button>
+        <button class="site-item" onclick="loadSiteHots(this, 'zhihu')">
+            <img src="../../static/img/hot-site/zhihu.png" alt="知乎">
+            <span>知乎</span>
+        </button>
+        <button class="site-item" onclick="loadSiteHots(this, 'wxread')">
+            <img src="../../static/img/hot-site/wxread.png" alt="微信阅读">
+            <span>微信阅读</span>
+        </button>
+        <button class="site-item" onclick="loadSiteHots(this, 'aisixiang')">
+            <img src="../../static/img/hot-site/aisixiang.png" alt="爱思想">
+            <span>爱思想</span>
+        </button>
+        <button class="site-item" onclick="loadSiteHots(this, 'lishi')">
+            <img src="../../static/img/hot-site/lishi.png" alt="历史上的今天">
+            <span>历史上的今天</span>
+        </button>
+        <button class="site-item" onclick="loadSiteHots(this, 'youxiputao')">
+            <img src="../../static/img/hot-site/youxiputao.png" alt="游戏葡萄">
+            <span>游戏葡萄</span>
+        </button>
+        <button class="site-item" onclick="loadSiteHots(this, 'gcores')">
+            <img src="../../static/img/hot-site/gcores.png" alt="机核">
+            <span>机核</span>
+        </button>
+
+        <button class="site-item" id="toggle-btn">
+            <span>展开</span>
+            <svg id="arrow-svg" fill="none" stroke="currentColor" stroke-width="4" viewBox="0 0 48 48" aria-hidden="true"
+                 focusable="false">
+                <path d="M39.6 17.443 24.043 33 8.487 17.443"></path>
+            </svg>
+        </button>
+    </div>
+
+    <div class="article-box" id="article-box">
+        {% include 'hot/hot-content.html' with context %}
+    </div>
+{% endblock %}

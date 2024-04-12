@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Spider</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/news.css">
+</head>
+<body>
+<div class="site">
+    <h1>Site News</h1>
+
+    <div class="site-box">
+        <div class="site-item" onclick="loadNews('xueqiu')">
+            <img src="../static/img/news-site/xueqiu.png" alt="">
+            <h3>雪球时讯</h3>
+        </div>
+        <div class="site-item" onclick="loadNews('dsb')">
+            <img src="../static/img/news-site/dsb.png" alt="">
+            <h3>电商报时讯</h3>
+        </div>
+        <div class="site-item" onclick="loadNews('jinse')">
+            <img src="../static/img/news-site/jinse.png" alt="">
+            <h3>金色财经时讯</h3>
+        </div>
+        <div class="site-item" onclick="loadNews('tmtpost')">
+            <img src="../static/img/news-site/tmtpost.png" alt="">
+            <h3>钛媒体快报</h3>
+        </div>
+    </div>
+
+    <div class="page-loader-box" id="page-loader-box">
+        <div class="page-loader"></div>
+    </div>
+
+    <div id="news-box" class="news-box">
+        {% include 'news-articles.html' with context %}
+    </div>
+
+    <!-- 加载动画容器 -->
+    <div class="loader" id="loader"></div>
+
+    <div class="load-more-news">
+        <button class="load-more-btn" onclick="loadNews(current_news_site)">
+            加载更多
+        </button>
+    </div>
+</div>
+
+<script>
+    window.onload = function () {
+        xueqiu_max_id = document.querySelector('.no-display:last-child').querySelector('#xueqiu_max_id').innerHTML.trim();
+    };
+
+    let current_news_site = 'xueqiu';
+    //TODO:
+    let xueqiu_max_id = -1;
+    let dsb_page = 1;
+    let jinse_bottom_id = 0;
+    let tmtpost_offset = 0;
+
+    function loadNews(site = current_news_site) {
+        document.getElementById('loader').style.display = 'block';
+        document.getElementById('page-loader-box').style.display = 'flex';
+        if (site !== current_news_site) {
+            //TODO:
+            xueqiu_max_id = -1;
+            dsb_page = 1;
+            jinse_bottom_id = 0;
+            tmtpost_offset = 0;
+        }
+
+        let params;
+        //TODO:
+        if (site === 'xueqiu') {
+            params = {
+                'site': site,
+                'xueqiu_max_id': xueqiu_max_id
+            }
+        } else if (site === 'dsb') {
+            params = {
+                'site': site,
+                'dsb_page': dsb_page
+            }
+        } else if (site === 'jinse') {
+            params = {
+                'site': site,
+                'jinse_bottom_id': jinse_bottom_id
+            }
+        } else if (site === 'tmtpost') {
+            params = {
+                'site': site,
+                'tmtpost_offset': tmtpost_offset
+            }
+        }
+        const queryString = objectToQueryString(params);
+        const url = `/load-news?${queryString}`;
+
+        // 使用 Fetch API 发送异步请求到后端，根据 site 参数获取对应的文章数据
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(data => {
+                if (site === current_news_site) {
+                    document.getElementById('news-box').innerHTML += data;
+                } else {
+                    document.getElementById('news-box').innerHTML = data;
+                }
+
+                const last_div = document.querySelector('.no-display:last-child');
+                //TODO:
+                xueqiu_max_id = last_div.querySelector('#xueqiu_max_id').innerHTML || xueqiu_max_id;
+                dsb_page = last_div.querySelector('#dsb_page').innerHTML || dsb_page;
+                jinse_bottom_id = last_div.querySelector('#jinse_bottom_id').innerHTML || jinse_bottom_id;
+                tmtpost_offset = last_div.querySelector('#tmtpost_offset').innerHTML || tmtpost_offset;
+
+                document.getElementById('loader').style.display = 'none';
+                document.getElementById('page-loader-box').style.display = 'none';
+
+                // 更新 current_news_site
+                current_news_site = site;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+    function objectToQueryString(obj) {
+        return Object.entries(obj)
+            .map(([key, value]) => {
+                const encodedKey = encodeURIComponent(key);
+                const encodedValue = encodeURIComponent(value);
+                return `${encodedKey}=${encodedValue}`;
+            })
+            .join('&');
+    }
+</script>
+
+</body>
+</html>
