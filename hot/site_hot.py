@@ -94,6 +94,9 @@ def get_site_hot(site: str, param=''):
         return get_juejin_hot(param)
     elif site == 'renrenchanpin':
         return get_woshipm_hot(param)
+    elif site == 'appinn':
+        return get_appinn_hot(param)
+
     # 添加其他站点的处理逻辑
     else:
         raise ValueError('Invalid site parameter')

@@ -1,6 +1,7 @@
 import datetime
 
 import requests
+from bs4 import BeautifulSoup
 
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
@@ -175,6 +176,48 @@ def get_woshipm_hot(param='日榜'):
             'detail': item['data']['articleSummary'],
             'img_url': item['data']['imageUrl'],
             'hot': item['scores']
+        }
+        articles.append(article)
+
+    result['articles'] = articles
+    return result
+
+
+# 获取小众软件 https://www.appinn.com/
+def get_appinn_hot(param='精选'):
+    if param == '':
+        param = '精选'
+
+    param_to_url = {
+        '精选': 'https://www.appinn.com/category/featured/',
+        'Windows': 'https://www.appinn.com/category/windows/',
+        'macOS': 'https://www.appinn.com/category/mac/',
+        'Chrome': 'https://www.appinn.com/category/chrome/',
+        'Web': 'https://www.appinn.com/category/online-tools/',
+        'Android': 'https://www.appinn.com/category/featured/',
+        'iPhone': 'https://www.appinn.com/category/ios/iphone/',
+        'iPad': 'https://www.appinn.com/category/ios/ipad/',
+    }
+
+    result = {
+        'tabs': ['精选', 'Windows', 'macOS', 'Chrome', 'Web', 'Android', 'iPhone', 'iPad'],
+        'site': 'appinn'
+    }
+    articles = []
+
+    response = requests.get(param_to_url[param], headers=HEADERS)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    items = soup.findAll('article')
+
+    for item in items:
+        article = {
+            'title': item.find('h2').text,
+            'subTitle': ' | '.join([tag.text for tag in item.find('span', class_='thecategory').findAll('a')])
+                        + ' | ' + item.find('span', class_='thetime updated').find('span').text,
+            'link': item.find('a')['href'],
+            'detail': item.find('div', class_='post-excerpt').text,
+            'img_url': item.find('img')['src'],
+            'hot': ''
         }
         articles.append(article)
 

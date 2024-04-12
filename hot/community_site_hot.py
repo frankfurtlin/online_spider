@@ -89,27 +89,41 @@ def get_zhihu_hot(param='热榜'):
     if param == '':
         param = '热榜'
 
-    response = requests.get('https://www.zhihu.com/api/v3/feed/topstory/hot-lists/total?limit=50&desktop=true',
-                            headers=HEADERS)
-    data = response.json()['data']
-
     result = {
-        'tabs': ['热榜'],
+        'tabs': ['热榜', '知乎日报'],
         'site': 'zhihu'
     }
     articles = []
 
-    for item in data:
-        article = {
-            'title': item['target']['title'],
-            'subTitle': '',
-            'link': 'https://zhihu.com/question/' + str(item['target']['id']),
-            'detail': item['target']['excerpt'],
-            'img_url': item['children'][0]['thumbnail'],
-            'hot': str(item['target']['answer_count']) + ' 回答 | ' + str(item['target']['follower_count']) + ' 关注 | ' +
-                   item['detail_text'].split(' ')[0] + 'w',
-        }
-        articles.append(article)
+    if param == '热榜':
+        response = requests.get('https://www.zhihu.com/api/v3/feed/topstory/hot-lists/total?limit=50&desktop=true',
+                                headers=HEADERS)
+        data = response.json()['data']
+        for item in data:
+            article = {
+                'title': item['target']['title'],
+                'subTitle': '',
+                'link': 'https://zhihu.com/question/' + str(item['target']['id']),
+                'detail': item['target']['excerpt'],
+                'img_url': item['children'][0]['thumbnail'],
+                'hot': str(item['target']['answer_count']) + ' 回答 | ' + str(item['target']['follower_count']) + ' 关注 | ' +
+                       item['detail_text'].split(' ')[0] + 'w',
+            }
+            articles.append(article)
+    else:
+        response = requests.get('https://daily.zhihu.com/', headers=HEADERS)
+        soup = BeautifulSoup(response.text, 'html.parser')
+        items = soup.findAll('div', class_='box')
+        for item in items:
+            article = {
+                'title': item.find('span').text,
+                'subTitle': '',
+                'link': 'https://daily.zhihu.com' + item.find('a')['href'],
+                'detail': '',
+                'img_url': item.find('img')['src'],
+                'hot': '',
+            }
+            articles.append(article)
 
     result['articles'] = articles
     return result
