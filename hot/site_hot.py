@@ -92,6 +92,8 @@ def get_site_hot(site: str, param=''):
         return get_csdn_hot(param)
     elif site == 'juejin':
         return get_juejin_hot(param)
+    elif site == 'infoq':
+        return get_infoq_hot(param)
     elif site == 'renrenchanpin':
         return get_woshipm_hot(param)
     elif site == 'appinn':

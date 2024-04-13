@@ -128,10 +128,11 @@ def get_juejin_hot(param='热榜'):
             article = {
                 'title': item['collection_set']['collection_name'],
                 'subTitle': item['creator']['user_name'] + ' | '
-                            + datetime.datetime.fromtimestamp(item['collection_set']['update_time']).strftime('%Y-%m-%d %H:%M'),
+                            + datetime.datetime.fromtimestamp(item['collection_set']['update_time']).strftime(
+                    '%Y-%m-%d %H:%M'),
                 'link': f"https://juejin.cn/collection/{item['collection_set']['collection_id']}",
                 'detail': str(item['collection_set']['post_article_count']) + ' 篇文章 | '
-                            + str(item['collection_set']['concern_user_count']) + ' 订阅',
+                          + str(item['collection_set']['concern_user_count']) + ' 订阅',
                 'img_url': '',
                 'hot': '',
             }
@@ -148,6 +149,49 @@ def get_juejin_hot(param='热榜'):
                 'hot': round(item['content_counter']['hot_rank']),
             }
             articles.append(article)
+
+    result['articles'] = articles
+    return result
+
+
+# 获取InfoQ热榜 https://www.infoq.cn/hotlist?tag=day
+def get_infoq_hot(param='周榜'):
+    if param == '':
+        param = '周榜'
+
+    result = {
+        'tabs': ['周榜', '月榜', '半年榜'],
+        'site': 'infoq'
+    }
+    articles = []
+
+    url = 'https://www.infoq.cn/public/v1/article/getHotList'
+    data = {
+        "score": None,
+        "type": result['tabs'].index(param) + 1,
+        "size": 50
+    }
+
+    infoq_headers = {
+        'Origin': 'https://www.infoq.cn',
+        'Referer': 'https://www.infoq.cn/hotlist?tag=month'
+    }
+    infoq_headers.update(HEADERS)
+
+    response = requests.post(url, headers=infoq_headers, json=data)
+    items = response.json()['data']
+
+    for item in items:
+        article = {
+            'title': item['article_title'],
+            'subTitle': f"{' | '.join(topic['name'] for topic in item['topic'])} "
+                        f"| {datetime.datetime.fromtimestamp(item['publish_time'] / 1000).strftime('%m-%d %H:%M')}",
+            'link': f"https://www.infoq.cn/article/{item['uuid']}",
+            'detail': item['article_summary'],
+            'img_url': item['article_cover'],
+            'hot': f"{item['views']} 浏览"
+        }
+        articles.append(article)
 
     result['articles'] = articles
     return result
