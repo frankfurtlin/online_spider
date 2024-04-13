@@ -35,7 +35,7 @@ def hot_community():
 
 @app.route('/hot/finance')
 def hot_finance():
-    return render_template('hot/finance.html', data=get_site_hot('baidu'))
+    return render_template('hot/finance.html', data=get_site_hot('xueqiu'))
 
 
 @app.route('/hot/develop')

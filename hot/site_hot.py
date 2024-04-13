@@ -1,5 +1,6 @@
 import config
 from hot.entertainment_site_hot import *
+from hot.finance_site_hot import *
 from hot.home_site_hot import *
 from hot.technology_site_hot import *
 from hot.community_site_hot import *
@@ -75,6 +76,9 @@ def get_site_hot(site: str, param=''):
         result = get_xiaohongshu_hot(param)
     elif site == 'douban':
         result = get_douban_hot(param)
+
+    elif site == 'xueqiu':
+        result = get_xueqiu_hot(param)
 
     elif site == 'tieba':
         result = get_baidu_tieba_hot(param)
