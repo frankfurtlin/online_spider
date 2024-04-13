@@ -1,13 +1,9 @@
+import config
 from hot.entertainment_site_hot import *
 from hot.home_site_hot import *
 from hot.technology_site_hot import *
 from hot.community_site_hot import *
 from hot.develop_site_hot import *
-
-HEADERS = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
-                  'Chrome/58.0.3029.110 Safari/537.3'
-}
 
 # ----------------------------------------------------------------------------------------------------------------------
 # 输出样例
@@ -27,80 +23,102 @@ HEADERS = {
 # }
 # ----------------------------------------------------------------------------------------------------------------------
 
+data = {}
+
 
 # 获取站点的热榜
 def get_site_hot(site: str, param=''):
+    if config.CACHE_ENABLED:
+        now_timestamp = int(time.time())
+        if (site in data and param in data[site] and
+                now_timestamp - data[site][param]['timestamp'] < config.CACHE_EXPIRATION):
+            # print(f"读取网站 {site} 的 {param} 内容命中了缓存")
+            return data[site][param]['result']
+
     if site == 'baidu':
-        return get_baidu_hot(param)
+        result = get_baidu_hot(param)
     elif site == 'sina':
-        return get_sina_hot(param)
+        result = get_sina_hot(param)
     elif site == 'tencent':
-        return get_tencent_hot(param)
+        result = get_tencent_hot(param)
     elif site == 'wangyi':
-        return get_wangyi_hot(param)
+        result = get_wangyi_hot(param)
     elif site == 'toutiao':
-        return get_toutiao_hot(param)
+        result = get_toutiao_hot(param)
     elif site == 'fenghuang':
-        return get_ifeng_hot(param)
+        result = get_ifeng_hot(param)
     elif site == 'msn':
-        return get_msn_hot(param)
+        result = get_msn_hot(param)
 
     elif site == 'ithome':
-        return get_ithome_hot(param)
+        result = get_ithome_hot(param)
     elif site == '36kr':
-        return get_36kr_hot(param)
+        result = get_36kr_hot(param)
     elif site == 'sspai':
-        return get_sspai_hot(param)
+        result = get_sspai_hot(param)
     elif site == 'geekpark':
-        return get_geekpark_hot(param)
+        result = get_geekpark_hot(param)
     elif site == 'pinwest':
-        return get_pinwest_hot(param)
+        result = get_pinwest_hot(param)
     elif site == 'ifanr':
-        return get_ifanr_hot(param)
+        result = get_ifanr_hot(param)
     elif site == 'cyzone':
-        return get_cyzone_hot(param)
+        result = get_cyzone_hot(param)
 
     elif site == 'weibo':
-        return get_weibo_hot(param)
+        result = get_weibo_hot(param)
     elif site == 'douyin':
-        return get_douyin_hot(param)
+        result = get_douyin_hot(param)
     elif site == 'bilibili':
-        return get_bilibili_hot(param)
+        result = get_bilibili_hot(param)
     elif site == 'xiaohongshu':
-        return get_xiaohongshu_hot(param)
+        result = get_xiaohongshu_hot(param)
     elif site == 'douban':
-        return get_douban_hot(param)
+        result = get_douban_hot(param)
 
     elif site == 'tieba':
-        return get_baidu_tieba_hot(param)
+        result = get_baidu_tieba_hot(param)
     elif site == 'hupu':
-        return get_hupu_hot(param)
+        result = get_hupu_hot(param)
     elif site == 'zhihu':
-        return get_zhihu_hot(param)
+        result = get_zhihu_hot(param)
     elif site == 'wxread':
-        return get_wxread_hot(param)
+        result = get_wxread_hot(param)
     elif site == 'aisixiang':
-        return get_aisixiang_hot(param)
+        result = get_aisixiang_hot(param)
     elif site == 'lishi':
-        return get_lishi(param)
+        result = get_lishi(param)
     elif site == 'youxiputao':
-        return get_youxiputao_hot(param)
+        result = get_youxiputao_hot(param)
     elif site == 'gcores':
-        return get_gcores_hot(param)
+        result = get_gcores_hot(param)
 
     elif site == 'csdn':
-        return get_csdn_hot(param)
+        result = get_csdn_hot(param)
     elif site == 'github':
-        return get_github_hot(param)
+        result = get_github_hot(param)
     elif site == 'juejin':
-        return get_juejin_hot(param)
+        result = get_juejin_hot(param)
     elif site == 'infoq':
-        return get_infoq_hot(param)
+        result = get_infoq_hot(param)
     elif site == 'renrenchanpin':
-        return get_woshipm_hot(param)
+        result = get_woshipm_hot(param)
     elif site == 'appinn':
-        return get_appinn_hot(param)
+        result = get_appinn_hot(param)
 
     # 添加其他站点的处理逻辑
     else:
         raise ValueError('Invalid site parameter')
+
+    if config.CACHE_ENABLED:
+        # 更新缓存
+        param_ = {
+            'result': result,
+            'timestamp': int(time.time())
+        }
+        if site in data:
+            data[site][param] = param_
+        else:
+            data[site] = {param: param_}
+
+    return result

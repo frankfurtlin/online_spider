@@ -4,6 +4,7 @@ from flask import Flask, render_template, request
 from hot.site_hot import get_site_hot
 from site_news import get_site_news
 
+# 启动参数 flask run --host=0.0.0.0 --port=3000
 app = Flask(__name__, template_folder='./templates')
 
 
