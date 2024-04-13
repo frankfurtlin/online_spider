@@ -90,6 +90,8 @@ def get_site_hot(site: str, param=''):
 
     elif site == 'csdn':
         return get_csdn_hot(param)
+    elif site == 'github':
+        return get_github_hot(param)
     elif site == 'juejin':
         return get_juejin_hot(param)
     elif site == 'infoq':

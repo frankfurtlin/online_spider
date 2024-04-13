@@ -2,6 +2,7 @@ import datetime
 
 import requests
 from bs4 import BeautifulSoup
+from requests.adapters import HTTPAdapter
 
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
@@ -49,6 +50,65 @@ def get_csdn_hot(param='热榜'):
             'detail': f"{item['viewCount']} 浏览 · {item['commentCount']} 评论 · {item['favorCount']} 收藏",
             'img_url': item['picList'][0] if len(item['picList']) > 0 else '',
             'hot': item['hotRankScore'],
+        }
+        articles.append(article)
+
+    result['articles'] = articles
+    return result
+
+
+# 获取Github热榜
+def get_github_hot(param='总榜'):
+    if param == '':
+        param = '总榜'
+
+    param_to_url = {
+        '总榜': 'https://github.com/trending',
+        '中文热榜': 'https://github.com/trending?spoken_language_code=zh',
+        'C': 'https://github.com/trending/c',
+        'C++': 'https://github.com/trending/c++',
+        'Java': 'https://github.com/trending/java',
+        'Python': 'https://github.com/trending/python',
+        'Go': 'https://github.com/trending/go',
+        'HTML': 'https://github.com/trending/html',
+        'CSS': 'https://github.com/trending/css',
+        'JavaScript': 'https://github.com/trending/js',
+        'TypeScript': 'https://github.com/trending/ts',
+        'C#': 'https://github.com/trending/c%23',
+        'PHP': 'https://github.com/trending/php',
+        'Rust': 'https://github.com/trending/rust',
+        'Swift': 'https://github.com/trending/swift',
+        'Lua': 'https://github.com/trending/lua',
+        'Vue': 'https://github.com/trending/vue',
+    }
+
+    s = requests.Session()
+    s.mount('https://', HTTPAdapter(max_retries=10))
+
+    response = s.get(param_to_url[param], headers=HEADERS, timeout=5)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    items = soup.find_all('article', class_='Box-row')
+
+    result = {
+        'tabs': ['总榜', '中文热榜', 'C', 'C++', 'Java', 'Python', 'Go', 'HTML', 'CSS', 'JavaScript', 'TypeScript',
+                 'C#', 'PHP', 'Rust', 'Swift', 'Lua', 'Vue'],
+        'site': 'github'
+    }
+    articles = []
+
+    for item in items:
+        article = {
+            'title': item.find('a', class_='Link').text,
+            'subTitle': item.find('span', class_='d-inline-block ml-0 mr-3').findAll('span')[-1].text
+                    if item.find('span', class_='d-inline-block ml-0 mr-3') is not None else '',
+            'link': f"https://www.github.com{item.find('a', class_='Link')['href']}",
+            'detail': item.find('p', class_='col-9 color-fg-muted my-1 pr-4').text
+                    if item.find('p', class_='col-9 color-fg-muted my-1 pr-4') is not None else '',
+            'img_url': '',
+            'hot': f"{item.find('a', class_='Link Link--muted d-inline-block mr-3').text} star"
+                   f" | {item.find('a', class_='Link Link--muted d-inline-block mr-3').text} fork" +
+                   (' | ' + item.find('span', class_='d-inline-block float-sm-right').text)
+                        if item.find('span', class_='d-inline-block float-sm-right') is not None else '',
         }
         articles.append(article)
 
